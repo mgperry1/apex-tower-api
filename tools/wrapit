@@ -1,0 +1,16 @@
+#!/bin/bash
+
+INPUT_DIR=~/code
+OUTPUT_DIR=~/code/wrapped
+mkdir -p $OUTPUT_DIR
+cd $INPUT_DIR
+vfiles=$(ls $INPUT_DIR/*sql)
+for filein in $vfiles ; do
+ wrapname=$(basename $filein .sql)
+ fileout="$OUTPUT_DIR/${wrapname}_wrap.sql"
+ echo "Wrapping : $filein to $fileout"
+ echo "To : $fileout"
+ echo "=========="
+ wrap iname=$filein oname=$fileout
+
+done
